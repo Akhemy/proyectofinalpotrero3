@@ -1,0 +1,27 @@
+tp_final_protrero
+       app.py                  # Archivo principal de Flask
+        requirements.txt        # Dependencias del proyecto
+
+templates               # Carpeta para las plantillas HTML
+       index.html
+      courses.html
+       login.html
+       register.html
+
+static                  # Carpeta para archivos estáticos (CSS, JS, imágenes)
+      css
+      login.css
+      register.css
+      styles.css
+  js
+      main.js
+  img
+
+firebase                # Carpeta para los archivos de credenciales de Firebase
+      apiprueba1tpfinal-firebase-adminsdk-8sx2e-5225658030.json
+      apicursos-5596f-firebase-adminsdk-vc49w-3dd851350a.json
+
+api_consumers           # Carpeta para los archivos de Python que consumen la API
+     __init__.py         # Indica que este directorio es un paquete
+      users.py            # Funciones relacionadas con usuarios
+      courses.py          # Funciones relacionadas con cursos

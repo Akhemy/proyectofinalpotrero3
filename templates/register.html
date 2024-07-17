@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/C:/PAME/potrero digital/proyectofinalpotrero3/static/styles/registro.css">
+    <title>Registro</title>
+</head>
+<body>  
+    <header class="header-registro">
+        <ul>
+            <li><a href="/courses.html"></i> Cursos</a></li>
+        </ul>
+    </header>
+    <main id="main-registro">
+        <section class="contenedor-formulario">
+            <form action="/register" method="post" id="formulario-registro">
+                <fieldset class="campo-1">
+                    <legend>Registro Alumno</legend>
+                    <div class="form-div">
+                        <label for="nombre-input"><i class="fa-regular fa-user"></i> Nombre: </label>
+                        <input type="text" name="username" id="nombre-input" placeholder="Escriba su nombre" required>
+                    </div>
+                    <div class="form-div">
+                        <label for="apellido-input"><i class="fa-solid fa-user"></i> Apellido: </label>
+                        <input type="text" name="apellido" id="apellido-input" placeholder="Escriba su apellido" required>
+                    </div>
+                    <div class="form-div">
+                        <label for="DNI-input"><i class="fa-solid fa-id-card"></i> DNI: </label>
+                        <input type="text" name="dni" id="DNI-input" placeholder="Escriba su DNI" required>
+                    </div>
+                    <div class="form-div">
+                        <label for="email-input"><i class="fa-solid fa-envelope"></i> Email: </label>
+                        <input type="text" name="email" id="email-input" placeholder="Escriba su email" required>
+                    </div>
+                    <div class="form-div">
+                        <label for="pass-input"><i class="fa-solid fa-key"></i> Contraseña: </label>
+                        <input type="password" name="password" id="pass-input" placeholder="Escriba su contraseña" required>
+                    </div>
+                    <div class="form-div">
+                        <label for="fecha-nac-input"><i class="fa-regular fa-calendar-days"></i> Fecha de Nacimiento: </label>
+                        <input type="date" name="fecha-nac" id="fecha-nac-input" placeholder="Seleccione su fecha de nacimiento" required>
+                    </div>
+                    <div class="form-div">
+                        <label for="pais-lista"><i class="fa-solid fa-earth-americas"></i> País: </label>
+                        <select name="pais-origen" id="pais-lista" aria-placeholder="Seleccione su país" required>
+                            <option value="argentina" selected>Argentina</option>
+                            <option value="uruguay">Uruguay</option>
+                            <option value="bolivia">Bolivia</option>
+                            <option value="paraguay">Paraguay</option>
+                            <option value="chile">Chile</option>
+                            <option value="peru">Perú</option>
+                            <option value="brasil">Brasil</option>
+                            <option value="colombia">Colombia</option>
+                            <option value="ecuador">Ecuador</option>
+                            <option value="venezuela">Venezuela</option>
+                            <option value="mexico">México</option>
+                        </select>
+                    </div>
+                    <div class="terminos-div">
+                        <input type="checkbox" name="acepto" id="terminos-input" required checked>
+                        <label for="terminos-input"> Acepto los términos y condiciones <i class="fa-solid fa-file-signature"></i></label>
+                    </div>
+                </fieldset>
+                <div class="enviar-div">
+                    <input type="submit" id="registrar-btn" value="Registrarme">
+                    <input type="reset" id="limpiar-btn" value="Limpiar">
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    <script>
+        const formRegistro = document.getElementById('formulario-registro')
+        const nombre = document.getElementById('nombre-input')
+        const apellido = document.getElementById('apellido-input')
+        const dni = document.getElementById('DNI-input') // DNI field
+        const email = document.getElementById('email-input')
+        const password = document.getElementById('pass-input')
+        const fechaNac = document.getElementById('fecha-nac-input')
+        const paisLista = document.getElementById('pais-lista')
+        const terminos = document.getElementById('terminos-input')
+        const registrarBtn = document.getElementById('registrar-btn')
+
+        const nombreMensaje = document.querySelector('.nombre-mensaje')
+        const apellidoMensaje = document.querySelector('.apellido-mensaje')
+        const dniMensaje = document.querySelector('.dni-mensaje') // DNI message element
+        const emailMensaje = document.querySelector('.email-mensaje')
+        const passMensaje = document.querySelector('.pass-mensaje')
+        const edadMensaje = document.querySelector('.edad-mensaje')
+        const paisMensaje = document.querySelector('.pais-mensaje')
+        const terminosMensaje = document.querySelector('.terminos-mensaje')
+
+        document.addEventListener('DOMContentLoaded', ()=> {
+
+        formRegistro.addEventListener('submit', (event)=> {
+            validarNombre(event)
+            validarApellido(event)
+            validarDNI(event) // DNI validation
+            validarEmail(event)
+            validarPass(event)
+            validarFechaNac(event)
+            validarPais(event)
+            validarTerminos(event)
+        })
+
+        function validarNombre(event) {
+            const nombreUsuario = nombre.value.trim()
+
+            if(nombreUsuario === '' || null) {
+            nombreMensaje.style.color = 'rgb(255, 0, 50)'
+            nombreMensaje.textContent = 'Es necesario que ingrese su nombre'
+            event.preventDefault();
+            } 
+            else if(nombreUsuario.length < 3) {
+            nombreMensaje.style.color = 'rgb(255, 0, 50)'
+            nombreMensaje.textContent = 'El nombre debe tener mínimo 3 caracteres'
+            event.preventDefault();
+            }
+            else if(nombreUsuario.length > 35) {
+            nombreMensaje.style.color = 'rgb(255, 0, 50)'
+            nombreMensaje.textContent = 'El nombre debe tener máximo 35 caracteres'
+            event.preventDefault();
+            }
+            else {
+            nombreMensaje.style.color = 'springgreen'
+            nombreMensaje.textContent = 'Nombre validado exitosamente'
+            }
+        }
+
+        function validarApellido(event) {
+            const apellidoUsuario = apellido.value.trim()
+
+            if(apellidoUsuario === '' || null) {
+            apellidoMensaje.style.color = 'rgb(255, 0, 50)'
+            apellidoMensaje.textContent = 'Es necesario que ingrese su apellido'
+            event.preventDefault()
+            }
+            else if(apellidoUsuario.length < 3) {
+            apellidoMensaje.style.color = 'rgb(255, 0, 50)'
+            apellidoMensaje.textContent = 'El apellido debe tener mínimo 3 caracteres'
+            event.preventDefault()
+            }
+            else if(apellidoUsuario.length > 35) {
+            apellidoMensaje.style.color = 'rgb(255, 0, 50)'
+            apellidoMensaje.textContent = 'El apellido debe tener máximo 35 caracteres'
+            event.preventDefault()
+            }
+            else {
+            apellidoMensaje.style.color = 'springgreen'
+            apellidoMensaje.textContent = 'Apellido validado exitosamente'
+            }
+        }
+
+        function validarDNI(event) {
+            const dniUsuario = dni.value.trim()
+            const dniPattern = /^\d+$/
+
+            if(dniUsuario === '' || null) {
+            dniMensaje.style.color = 'rgb(255, 0, 50)'
+            dniMensaje.textContent = 'Es necesario que ingrese su DNI'
+            event.preventDefault()
+            } 
+            else if(!dniPattern.test(dniUsuario)) {
+            dniMensaje.style.color = 'rgb(255, 0, 50)'
+            dniMensaje.textContent = 'El DNI debe contener solo números'
+            event.preventDefault()
+            }
+            else {
+            dniMensaje.style.color = 'springgreen'
+            dniMensaje.textContent = 'DNI validado exitosamente'
+            }
+        }
+
+        function validarEmail(event) {
+            const userEmail = email.value.trim()
+
+            if(userEmail === '' || null) {
+            emailMensaje.style.color = 'rgb(255, 0, 50)'
+            emailMensaje.textContent = "Es necesario que ingrese un correo"
+            event.preventDefault()
+            }
+            else if(!emailRegEx(userEmail)) {
+            emailMensaje.style.color = 'rgb(255, 0, 50)'
+            emailMensaje.textContent = "Ingrese un correo con formato válido"
+            event.preventDefault()
+            }
+            else if(emailRegEx(userEmail)){
+            emailMensaje.style.color = 'springgreen'
+            emailMensaje.textContent = "Correo validado exitosamente"
+            }
+        }
+
+        function emailRegEx(email) {
+            const regEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            return regEx.test(email)
+        }
+
+        function validarPass(event) {
+            const userPass = password.value.trim()
+
+            if(userPass === '' || null) {
+            passMensaje.style.color = 'rgb(255, 0, 50)'
+            passMensaje.textContent = "Es obligatorio ingresar contraseña"
+            event.preventDefault()
+            }
+            else if(userPass.length < 6) {
+            passMensaje.style.color = 'rgb(255, 0, 50)'
+            passMensaje.textContent = 'Ingrese mínimamente 6 caracteres'
+            event.preventDefault()
+            }
+            else if(userPass.length > 36) {
+            passMensaje.style.color = 'rgb(255, 0, 50)'
+            passMensaje.textContent = 'Ingrese como máximo 36 caracteres'
+            event.preventDefault()
+            }
+            else {
+            passMensaje.style.color = 'springgreen'
+            passMensaje.textContent = 'Contraseña validada exitosamente'
+            }
+        }
+
+        function validarFechaNac(event) {
+            if(validarEdad() === '' || null || undefined || NaN || false) {
+            edadMensaje.style.color = 'rgb(255, 0, 50)'
+            edadMensaje.textContent = 'Es necesario que ingrese su edad'
+            event.preventDefault()
+            }
+            else if(validarEdad() < 18) {
+            edadMensaje.style.color = 'rgb(255, 0, 50)'
+            edadMensaje.textContent = 'Debe ser mayor de 18 años'
+            event.preventDefault()
+            }
+            else if(validarEdad() >= 18) {
+            edadMensaje.style.color = 'springgreen'
+            edadMensaje.textContent = 'Edad validada exitosamente'
+            }
+            
+        }
+        
+        function validarEdad() {
+            let fechaActual = new Date()
+            let userFecha = new Date(fechaNac.value)
+            let diferencia = new Date(fechaActual - userFecha)
+            let edad = Math.abs(diferencia.getUTCFullYear() - 1970)
+
+            return edad >= 18 ?  edad : false
+        }
+
+        function validarPais(event) {
+            if(paisLista.value === 'seleccionar' || '' || null) {
+            paisMensaje.style.color = 'rgb(255, 0, 50)'
+            paisMensaje.textContent = 'Debe seleccionar su país'
+            event.preventDefault()
+            }
+            else if(paisLista.value !== 'seleccionar' || '' || null) {
+            paisMensaje.style.color = 'springgreen'
+            paisMensaje.textContent = 'País validado exitosamente'
+            }
+        }
+
+        function validarTerminos(event) {
+            if(!terminos.checked) {
+            terminosMensaje.style.color = 'rgb(255, 0, 50)'
+            terminosMensaje.textContent = 'Es necesario que acepte los términos'
+            event.preventDefault()
+            }
+            else {
+            terminosMensaje.style.color = 'springgreen'
+            terminosMensaje.textContent = 'Términos validados exitosamente'
+            }
+            
+        }
+
+        })
+    </script>
+</body>
+</html>

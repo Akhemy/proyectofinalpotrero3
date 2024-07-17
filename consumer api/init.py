@@ -1,0 +1,1 @@
+# api_consumers/__init__.py  sirve para indicar a Python que esta carpeta debe ser tratada como un paquete

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/C:/PAME/potrero digital/proyectofinalpotrero3/static/styles/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <header class="header-login">
+        <ul>
+            <li><a href="/login">Iniciar Sesión</a></li>
+            <li><a href="/register">Registro</a></li>
+            <li><a href="/courses.html"></i> Cursos</a></li>
+        </ul>
+    </header>
+    <main id="main-login">
+        <section class="login-contenedor">
+            <form action="/login" method="post" id="login-form" onsubmit="return validateForm()">
+                <fieldset class="login-field">
+                    <legend>Iniciar Sesión Alumno</legend>
+                    <div class="login-div">
+                        <label for="DNI-login"><i class="fa-solid fa-id-card"></i> DNI: </label>
+                        <input type="text" name="username" id="DNI-login" placeholder="Escriba DNI" required>
+                    </div>
+                    <div class="login-div">
+                        <label for="Mail-login"><i class="fa-solid fa-envelope"></i> Mail: </label>
+                        <input type="email" name="email" id="Mail-login" placeholder="Escriba su Mail" required>
+                    </div>
+                    <div class="login-div">
+                        <label for="pass-login"><i class="fa-solid fa-key"></i> Contraseña: </label>
+                        <input type="password" name="password" id="pass-login" placeholder="Escriba su contraseña" required>
+                    </div>
+                </fieldset>
+                <div class="login-botones">
+                    <input type="submit" value="Iniciar Sesión" id="login-btn">
+                    <input type="reset" value="Limpiar" id="limpiar-btn">
+                </div>
+                <p class="sugerencia">¿No tenés cuenta? <button type="button" class="registrar-link" onclick="redirectToRegister()">¡Registrate!</button></p>
+            </form>
+        </section>
+    </main>    
+    <script>
+        function validateForm() {
+            const dni = document.getElementById('DNI-login').value;
+            const dniPattern = /^\d+$/;
+            
+            if (!dniPattern.test(dni)) {
+                alert('El DNI debe contener solo números.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function redirectToRegister() {
+            window.location.href = "register.html";
+        }
+    </script>
+</body>
+</html>

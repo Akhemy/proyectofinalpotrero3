@@ -1,0 +1,46 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #343a40;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin: 10px;
+    text-decoration: none;
+    color: blue;
+}
+
+/* Navbar */
+.navbar {
+    margin-bottom: 20px;
+}
+
+/* Courses */
+#courses-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-title {
+    color: #007bff;
+}
+
